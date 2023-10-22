@@ -6,7 +6,7 @@ describe 'Usuario visita tela inicial' do
 # nesse caso específico, não há pre-requisitos pra essa primeira tarefa de abrir a página, então ele fica vazio
     
     # Act
-    visit('/') #a / é pq é a tela inicial
+    visit root_path #a / é pq é a tela inicial
 
     # Assert
     expect(page).to have_content('Galpões & Estoque')
@@ -19,7 +19,7 @@ describe 'Usuario visita tela inicial' do
     Warehouse.create(name:'Maceio', code:'MCZ', city:'Maceio', area:50_000)
 
     #Act
-    visit('/')
+    visit root_path
 
     #Assert
     #garantir que eu veja na tela os galpoes rio e maceio
@@ -39,7 +39,7 @@ describe 'Usuario visita tela inicial' do
     #Arrange
 
     #Act
-    visit('/')
+    visit root_path
     #Assert
     expect(page).to have_content('Não existem galpões cadastrados')
   end 
