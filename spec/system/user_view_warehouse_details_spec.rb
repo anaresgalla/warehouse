@@ -27,7 +27,7 @@ describe 'Usuário vê detalhes de um galpão' do
         description: 'Galpão destinado para cargas internacionais')
 
     #Act --> visitar a tela inicial, clicar no nome do galpão, clicar em voltar
-    visit root_path
+    visit(root_path)
     click_on 'Aeroporto SP'
     click_on 'Voltar'
 
