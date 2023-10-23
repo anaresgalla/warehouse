@@ -14,6 +14,9 @@
       <h1> Galpões & Estoque </h1>
     </header>
     <main>
+      <div>
+        <%= flash[:notice] %> <!--ou somente o notice, sem flash e sem :-->
+      </div>
       <%= yield %>
     </main>
   </body>
