@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      warehouse: 'Galpão'
+    attributes:
+      warehouse:
+        name: "Nome"
+        code: "Código"
+        city: "Cidade"
+        address: "Endereço"
+        description: "Descrição"
+        area: "Área"
+        cep: "CEP"
+      # will translate User attribute "login" as "Handle"
