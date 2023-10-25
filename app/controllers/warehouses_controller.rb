@@ -1,20 +1,15 @@
 class WarehousesController < ApplicationController
-  def show
-    id = params[:id]
-    @warehouse = Warehouse.find(id)
-  end 
+  before_action :set_warehouse, only: [:show, :edit, :update]
+
+  def show; end 
 
   def new
     @warehouse = Warehouse.new
   end
 
   def create
-    #É aqui dentro que vamos:
-    #1- Receber os dados enviados
-
+    #É aqui dentro que vamos: #1- Receber os dados enviados
     #2- Criar um novo GALPÃO(nesse caso) no banco de dados
-    warehouse_params = params.require(:warehouse).permit(:name, :code, :city, :address,
-                                       :description, :cep, :area) #=> STRONG PARAMETERS
     @warehouse = Warehouse.new(warehouse_params)
     if @warehouse.save
     #3- Redirecionar para a TELA INICIAL(nesse caso)
@@ -25,4 +20,25 @@ class WarehousesController < ApplicationController
       render 'new'
     end
   end 
+
+  def edit; end 
+
+  def update
+    if @warehouse.update(warehouse_params)
+        redirect_to warehouse_path(@warehouse.id), notice: 'Galpão atualizado com sucesso!'
+    else 
+      flash.now[:notice] = 'Não foi possível atualizar o galpão'
+      render 'edit'
+    end 
+  end
+
+  private #pra indicar que não é uma action
+  def set_warehouse
+    @warehouse = Warehouse.find(params[:id])
+  end
+
+  def warehouse_params
+    params.require(:warehouse).permit(:name, :code, :city, :address,
+                                      :description, :cep, :area) #=> STRONG PARAMETERS
+  end
 end 
