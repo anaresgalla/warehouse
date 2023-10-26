@@ -18,9 +18,11 @@
 
 <div> 
 <strong><%= link_to('Editar', edit_warehouse_path(@warehouse.id))%></strong> <!-- poderia ser sem o id -->
-<strong><%= button_to('Remover', warehouse_path(@warehouse.id), method: :delete)%></strong> 
 </div>
 <div>
 <strong><%= link_to('Voltar', root_path)%></strong>
+</div>
+<div>
+<strong><%= button_to('Remover', warehouse_path(@warehouse.id), method: :delete)%></strong> 
 </div>
 </section>

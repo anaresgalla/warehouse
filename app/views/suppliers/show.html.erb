@@ -2,17 +2,16 @@
 <h2><%= @supplier.corporate_name %></h2>
 
 <dl>
-  <dt>CNPJ:</dt>
+  <dt><strong>CNPJ:</strong></dt>
   <dd><%= @supplier.registration_number %></dd>
-  <dt>Endereço:</dt>
+  <dt><strong>Endereço:</strong></dt>
   <dd><%= @supplier.full_address %> - <%= @supplier.city %> - <%= @supplier.state %></dl>
-  <dt>E-mail:</dt>
+  <dt><strong>E-mail:</strong></dt>
   <dd><%= @supplier.email %></dd>
 </dl>
 
-<%= link_to 'Editar', edit_supplier_path(@supplier) %>
-
 <div>
-  <%= link_to('Voltar', root_path)%>
+<strong><%= link_to 'Editar', edit_supplier_path(@supplier) %></strong>
+<strong><%= link_to('Voltar', root_path)%></strong>
 </div>
 
