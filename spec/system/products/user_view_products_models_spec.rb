@@ -9,6 +9,7 @@ describe 'Usuário vê modelos de produtos' do
     within('nav') do
       click_on 'Modelos de Produtos'
     end
+  
     #Assert
     expect(current_path).to eq product_models_path
   end

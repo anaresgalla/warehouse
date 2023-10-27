@@ -79,6 +79,7 @@ GEM
     base64 (0.1.1)
     bigdecimal (3.1.4)
     builder (3.2.4)
+    byebug (11.1.3)
     capybara (3.39.2)
       addressable
       matrix
@@ -224,6 +225,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  byebug
   capybara
   debug
   puma (>= 5.0)
