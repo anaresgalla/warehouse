@@ -1,0 +1,18 @@
+<h1><%= @product_model.name %></h1>
+
+<dl>
+  <dt><strong>Fornecedor:</strong></dt>
+  <dd><%= @product_model.supplier.brand_name %></dd>
+  <dt><strong>SKU:</strong></dt>
+  <dd><%= @product_model.sku %></dd>
+  <dt><strong>Dimensão:</strong></dt>
+  <dd><%= @product_model.width %>cm x <%= @product_model.height %>cm x <%= @product_model.depth %>cm </dl>
+  <dt><strong>Peso:</strong></dt>
+  <dd><%= @product_model.weight %>g</dd>
+</dl>
+
+
+<div>
+<strong><%= link_to 'Editar', edit_product_model_path(@product_model) %></strong>
+<strong><%= link_to('Voltar', root_path)%></strong>
+</div>
