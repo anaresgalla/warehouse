@@ -16,6 +16,45 @@ RSpec.describe Order, type: :model do
       #Assert
       expect(result).to be true
     end
+
+    it 'data estimada de entrega deve ser obrigatória' do
+      #Arrange
+      order = Order.new(estimated_delivery_date: '')
+      #Act
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+      #Assert
+      expect(result).to be true
+    end
+
+    it 'data estimada de entrega não deve ser passada' do
+      #Arrange
+      order = Order.new(estimated_delivery_date: 1.day.ago)
+      #Act
+      order.valid?
+      #Assert
+      expect(order.errors.include?(:estimated_delivery_date)).to be true
+      expect(order.errors[:estimated_delivery_date]).to include('deve ser futura.')
+    end 
+
+    it 'data estimada de entrega não deve ser igual a hoje' do
+      #Arrange
+      order = Order.new(estimated_delivery_date: Date.today)
+      #Act
+      order.valid?
+      #Assert
+      expect(order.errors.include?(:estimated_delivery_date)).to be true
+      expect(order.errors[:estimated_delivery_date]).to include('deve ser futura.')
+    end 
+
+    it 'data estimada de entrega deve ser igual ou maior que amanhã' do
+      #Arrange
+      order = Order.new(estimated_delivery_date: 1.day.from_now)
+      #Act
+      order.valid?
+      #Assert
+      expect(order.errors.include?(:estimated_delivery_date)).to be false
+     end 
   end
 
   describe 'gera um código aleatório' do
@@ -45,7 +84,7 @@ RSpec.describe Order, type: :model do
                             full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                             email: 'contato@acme.com.br')   
       first_order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-11-21')
-      second_order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-05-07')
+      second_order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-12-07')
     #Act --> salvar no banco de dados
       second_order.save!
     #Assert --> espero que o pedido tenha um código aleatório
