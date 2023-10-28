@@ -92,5 +92,16 @@ RSpec.describe Warehouse, type: :model do
         #Assert: Espero que seja false(não pode ser válido)
         expect(result).to eq false 
       end
-  end     
+  end   
+  
+  describe '#full_description' do
+    it 'e exibe o nome e o código' do
+      #Arrange
+      w = Warehouse.new(name: 'Galpão Cuiabá', code: 'CBA')
+      #Act
+      result = w.full_description
+      #Assert
+      expect(result).to eq ('CBA - Galpão Cuiabá')
+    end 
+  end
 end
