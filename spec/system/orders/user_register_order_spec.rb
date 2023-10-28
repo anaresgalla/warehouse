@@ -25,6 +25,9 @@ describe 'Usuário cadastra um pedido' do
                                 full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                                 email: 'contato@acme.com.br')
     
+    ### configuração futura --> sei que em algum momento a app vai executar o método SecureRandom.alphanumeric
+    allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABC12345') #--> só serve durante a execução desse teste
+
     #Act
     login_as(user) 
     visit root_path
@@ -36,6 +39,7 @@ describe 'Usuário cadastra um pedido' do
 
     #Assert
     expect(page).to have_content 'Pedido registrado com sucesso'
+    expect(page).to have_content 'Pedido ABC12345'
     expect(page).to have_content 'Galpão Destino: GRU - Aeroporto SP'
     expect(page).to have_content 'Fornecedor: ACME LTDA'
     expect(page).to have_content 'Usuário Responsável: Leandro - leandro@email.com'
