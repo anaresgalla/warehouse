@@ -1,4 +1,6 @@
 class ProductModelsController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  
   def index
     @product_models = ProductModel.all 
   end 
@@ -12,6 +14,7 @@ class ProductModelsController < ApplicationController
     product_model_params = params.require(:product_model).permit(:name, :height, :width, :weight, :depth, 
                                                                  :sku, :supplier_id)
     @product_model = ProductModel.new(product_model_params)
+    
     if @product_model.save
       redirect_to @product_model, notice: 'Modelo de produto cadastrado com sucesso!'
     else 

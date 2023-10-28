@@ -19,6 +19,6 @@ describe 'Usuário se autentica' do
     expect(page).to have_content 'elisa@email.com'
     expect(page).to have_button 'Sair'
     user = User.last
-    expect(user.name).to eq 'Maria'
+    expect(user.name).to eq 'Elisa'
   end 
 end
