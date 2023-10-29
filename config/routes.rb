@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :product_models, only: [:index, :new, :create, :show, :edit]
  
   resources :orders, only: [:new, :create, :show, :index, :edit, :update] do
+    resources :order_items, only: [:new, :create] #----> Rota aninhada(nested route: uma rota dentro da outra)
     get 'search', on: :collection
     post 'delivered', on: :member
     post 'canceled', on: :member

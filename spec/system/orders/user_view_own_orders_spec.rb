@@ -112,7 +112,7 @@ describe 'Usuário vê seus próprios pedidos' do
     click_on order.code
     #Assert
     expect(page).to have_content 'Itens do Pedido'
-    expect(page).to have_content '19 X Produto A'
-    expect(page).to have_content '12 X Produto B'
+    expect(page).to have_content '19 x Produto A'
+    expect(page).to have_content '12 x Produto B'
   end
 end
