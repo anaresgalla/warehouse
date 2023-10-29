@@ -90,5 +90,21 @@ RSpec.describe Order, type: :model do
     #Assert --> espero que o pedido tenha um código aleatório
       expect(second_order.code).not_to eq first_order.code
     end
+
+    it 'e não deve ser modificado' do
+      #Arrange 
+      user = User.create!(name: 'Leandro', email: 'leandro@email.com', password: 'password')
+      warehouse = Warehouse.create!(name: 'Galpão Rio', code: 'RIO', address: 'Endereço', cep: '25000-000', 
+                            city: 'Rio', area: 1000, description: 'Alguma descrição')
+      supplier = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456',
+                           full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
+                           email: 'contato@acme.com.br')   
+      order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now)
+      original_code = order.code
+      #Act --> salvar no banco de dados
+      order.update!(estimated_delivery_date: 1.month.from_now)
+      #Assert --> espero que o pedido tenha um código aleatório
+      expect(order.code).to eq(original_code)
+      end
   end
 end
