@@ -6,6 +6,7 @@ class Warehouse < ApplicationRecord
   #ex: validades :code, presence: true  E  validades :code, length {is: 3}
   validates :code, uniqueness: true
   #a validação uniqueness analisa dados cadastrados no sql, então os dados devem estar lá
+  has_many :stock_products
 
   def full_description
     "#{code} - #{name}"
