@@ -34,7 +34,7 @@ describe 'Usuário cadastra um pedido' do
     click_on 'Registrar Pedido'
     select 'GRU - Aeroporto SP', from: 'Galpão Destino'
     select supplier.corporate_name, from: 'Fornecedor'
-    fill_in "Data Prevista de Entrega", with: '30/10/2023'
+    fill_in "Data Prevista de Entrega", with: '30/11/2023'
     click_on 'Gravar'
 
     #Assert
@@ -43,7 +43,8 @@ describe 'Usuário cadastra um pedido' do
     expect(page).to have_content 'Galpão Destino: GRU - Aeroporto SP'
     expect(page).to have_content 'Fornecedor: ACME LTDA'
     expect(page).to have_content 'Usuário Responsável: Leandro - leandro@email.com'
-    expect(page).to have_content 'Data Prevista de Entrega: 30/10/2023'
+    expect(page).to have_content 'Data Prevista de Entrega: 30/11/2023'
+    expect(page).to have_content 'Situação do Pedido: Pendente'
     expect(page).not_to have_content 'Galpão Maceio'
     expect(page).not_to have_content 'Stark Industries LTDA'
   end 
