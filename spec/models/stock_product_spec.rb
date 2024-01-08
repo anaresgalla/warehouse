@@ -11,7 +11,7 @@ RSpec.describe StockProduct, type: :model do
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456',
                                   full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                                   email: 'contato@acme.com.br')   
-      order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-11-21', status: 'delivered')
+      order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: 1.week.from_now, status: 'delivered')
       product = ProductModel.create!(name: 'Cadeira Gamer', weight: 10, width: 75, depth: 80,
                                      sku: 'CAD-13CD', supplier: s)
                                      
@@ -31,7 +31,7 @@ RSpec.describe StockProduct, type: :model do
         s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456',
                                     full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                                     email: 'contato@acme.com.br')   
-        order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-11-21', status: 'delivered')
+        order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: 1.week.from_now, status: 'delivered')
         product = ProductModel.create!(name: 'Cadeira Gamer', weight: 10, width: 75, depth: 80,
                                        sku: 'CAD-13CD', supplier: s)
         stock_product = StockProduct.create!(order: order, warehouse: w, product_model: product)
@@ -52,7 +52,7 @@ RSpec.describe StockProduct, type: :model do
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456',
                            full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                            email: 'contato@acme.com.br')   
-      order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-11-21', status: 'delivered')
+      order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: 1.week.from_now, status: 'delivered')
       product = ProductModel.create!(name: 'Cadeira Gamer', weight: 10, width: 75, depth: 80,
                                      sku: 'CAD-13CD', supplier: s)
     #Act --> salvar no banco de dados
@@ -69,7 +69,7 @@ RSpec.describe StockProduct, type: :model do
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456',
                            full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                            email: 'contato@acme.com.br')   
-      order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-11-21', status: 'delivered')
+      order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: 1.week.from_now, status: 'delivered')
       product = ProductModel.create!(name: 'Cadeira Gamer', weight: 10, width: 75, depth: 80,
                                      sku: 'CAD-13CD', supplier: s)
       #Act --> salvar no banco de dados

@@ -9,7 +9,7 @@ describe 'Warehouse API' do
                                     description: 'Galpão destinado para cargas internacionais')
       
       #Act
-      get "/api/v1/warehouses/#{warehouse.id}"
+      get "/api/v1/warehouses/#{warehouse.id}" #verbo http+url
 
       #Assert
       expect(response.status).to eq 200 
@@ -72,6 +72,15 @@ describe 'Warehouse API' do
       #Assert
       expect(response).to have_http_status 500
     end 
+
+    it 'and raise internal error' do
+      #Arrange
+      allow(Warehouse).to receive(:all).and_raise(ActiveRecord::QueryCanceled)
+      #Act
+      get "/api/v1/warehouses"
+      #Assert 
+      expect(response).to have_http_status(500)
+    end
   end
 
   context 'POST/api/v1/warehouses' do
@@ -84,7 +93,7 @@ describe 'Warehouse API' do
       #Act
       post "/api/v1/warehouses", params: warehouse_params
       #Assert
-      expect(response).to have_http_status(:created) 
+      expect(response).to have_http_status(:created) #posso colocar :created ou 201 q é o código http para create
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
       expect(json_response ['name']).to eq 'Aeroporto SP'

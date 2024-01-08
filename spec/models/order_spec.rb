@@ -10,7 +10,7 @@ RSpec.describe Order, type: :model do
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456',
                                   full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                                   email: 'contato@acme.com.br')   
-      order = Order.new(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-11-21')
+      order = Order.new(user: u, warehouse: w, supplier: s, estimated_delivery_date: 1.week.from_now)
       #Act
       result = order.valid?
       #Assert
@@ -66,7 +66,7 @@ RSpec.describe Order, type: :model do
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456',
                                   full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                                   email: 'contato@acme.com.br')   
-      order = Order.new(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-11-21')
+      order = Order.new(user: u, warehouse: w, supplier: s, estimated_delivery_date: 1.week.from_now)
     #Act --> salvar no banco de dados
       order.save!
       result = order.code
@@ -83,8 +83,8 @@ RSpec.describe Order, type: :model do
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456',
                             full_address: 'Avenida dos Coelhos, 50', city: 'Manaus', state: 'AM', 
                             email: 'contato@acme.com.br')   
-      first_order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-11-21')
-      second_order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: '2023-12-07')
+      first_order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: 1.week.from_now)
+      second_order = Order.create!(user: u, warehouse: w, supplier: s, estimated_delivery_date: 1.month.from_now)
     #Act --> salvar no banco de dados
       second_order.save!
     #Assert --> espero que o pedido tenha um código aleatório

@@ -1,4 +1,6 @@
 class Api::V1::WarehousesController < Api::V1::ApiController
+rescue_from ActiveRecord::ActiveRecordError, with: :return_500
+rescue_from ActiveRecord::RecordNotFound, with: :return_404
 
   def show
     warehouse = Warehouse.find(params[:id])
